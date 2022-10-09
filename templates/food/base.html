@@ -1,5 +1,5 @@
-{% load static %}
-
+{% load template-variables %}
+{% get_nav_items as nav_items %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +9,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'food/style.css' %}"> 
     <link href="{% static 'css/tabler.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
     <title>Food App</title>
 </head>
 
@@ -20,7 +22,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
-                    <a href="{% url 'dashboard:Home' %}">
+                    <a href="{% url 'food:index' %}">
                         <img src="{% static 'img/logo.png' %}" width="110" height="32" alt="Tabler"
                              class="navbar-brand-image">
                     </a>
@@ -88,7 +90,9 @@
                 <!-- Page Content -->
     
     
-                    {% block content %}  {% endblock %}
+                {% block body %}
+    
+                {% endblock body %}
                 </div>
             </div>
     
@@ -115,37 +119,6 @@
             </footer>
         </div>
     </div>
-
-
-
-
-
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Food</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/food/index">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/food/addItem">Add Item</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Delete Item</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">View Item</a>
-                </li> 
-            </ul>
-        </div>
-    </nav>
-
-    {% block body %}
     
-    {% endblock body %}
 </body>
 </html>
