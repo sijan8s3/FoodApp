@@ -20,4 +20,5 @@ urlpatterns = [
     #delete item
     path('delete/<int:itemId>/', views.deleteItem, name='deleteItem'),
 
+
 ]
