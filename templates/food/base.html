@@ -13,6 +13,113 @@
 </head>
 
 <body>
+    <div class="page">
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark">
+                    <a href="{% url 'dashboard:Home' %}">
+                        <img src="{% static 'img/logo.png' %}" width="110" height="32" alt="Tabler"
+                             class="navbar-brand-image">
+                    </a>
+                </h1>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="navbar-nav pt-lg-3">
+                         {% for nav_item_tuples in nav_items.items %}
+                            <li class="mx-3 mt-3 mb-2"><b style="color: #626976 !important">{{ nav_item_tuples.0 }}</b></li>
+                            {% for nav_item in nav_item_tuples.1 %}
+                                <li class="nav-item {% if request.resolver_match.url_name == nav_item.0 %}active{% endif %}" >
+                                <a class="nav-link" href="{% url nav_item.2 %}">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <i class="{{ nav_item.1 }}"></i>
+                                    </span>
+                                <span class="nav-link-title"> {{ nav_item.0 }}</span>
+                                </a>
+                            </li>
+    
+                            {% endfor %}
+                        {% endfor %}
+    
+    
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div class="page-wrapper" style="background-color: #d4edea !important;">
+            <div class="container-fluid bg-white">
+                <div class="container-xl">
+                    <div class="d-print-none" style="margin-top: 1.25rem; margin-bottom: 1.25rem">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <!-- Page pre-title -->
+                                <div class="page-pretitle">
+                                    Food App
+                                </div>
+                                <h2 class="page-title">
+                                    {{ request.resolver_match.url_name }}
+                                </h2>
+                            </div>
+                            <div class="col text-end">
+    
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="font-weight-medium"><b>John Doe</b></div>
+                                        <div class="text-muted">#Devs Nepal</div>
+                                    </div>
+                                    <div class="col-auto">
+                                              <span class="avatar rounded"
+                                                    style="background-image: url('https://avataaars.io/?avatarStyle=Circle&topType=WinterHat1&accessoriesType=Prescription02&hatColor=Heather&hairColor=Blonde&facialHairType=MoustacheMagnum&facialHairColor=Blonde&clotheType=BlazerShirt&clotheColor=PastelRed&eyeType=Wink&eyebrowType=UpDownNatural&mouthType=Smile&skinColor=Tanned')"></span>
+                                    </div>
+                                </div>
+    
+                            </div>
+    
+    
+                            <!-- Page title actions -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page title -->
+            </div>
+            <div class="page-body">
+                <div class="container">
+                <!-- Page Content -->
+    
+    
+                    {% block content %}  {% endblock %}
+                </div>
+            </div>
+    
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    <a href="./changelog.html" class="link-secondary" rel="noopener">
+                                        v1.0.0-beta6
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    Copyright &copy; 2022
+                                    <a href="dashboard" class="link-secondary">Tabler</a>.
+                                    All rights reserved.
+                                </li>
+    
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Food</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
